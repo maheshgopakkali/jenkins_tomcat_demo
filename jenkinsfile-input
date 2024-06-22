@@ -10,7 +10,7 @@ pipeline {
     stages{
         stage ('Checkout') {
             steps{
-                checkout poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vcjain/docker-agent-demo.git']])
+                checkout poll: false, scm: scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/maheshgopakkali/jenkins_tomcat_demo.git']])
             }
             
         }
@@ -47,7 +47,7 @@ pipeline {
                echo 'Tomcat Ip address $TOMCAT_IP'
                 sshagent(['tomcat-key']) {
                     sh '''
-                        scp -v -o StrictHostKeyChecking=no target/demowar-0.0.1-SNAPSHOT.war ubuntu@$TOMCAT_IP:/opt/tomcat/webapps
+                        scp -v -o StrictHostKeyChecking=no target/demowar-0.0.1-SNAPSHOT.war ubuntu@54.80.232.239:8080:/opt/tomcat/webapps
                     '''
                 }
                 echo 'Deploying on Tomcat '
